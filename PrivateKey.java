@@ -2,7 +2,7 @@ package practice_5_baby_blockchain;
 
 import java.math.BigInteger;
 
-//класс реализует секретный ключ
+//РєР»Р°СЃСЃ СЂРµР°Р»РёР·СѓРµС‚ СЃРµРєСЂРµС‚РЅС‹Р№ РєР»СЋС‡
 public class PrivateKey {
 	
 	private BigInteger d;
@@ -30,7 +30,7 @@ public class PrivateKey {
 		this.n = n;
 	}
 
-	// переопределенная функция toString
+	// РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ toString
 	@Override
 	public String toString() {
 		return "PrivateKey [d=" + getD() + ", n=" + getN() +  "]";
