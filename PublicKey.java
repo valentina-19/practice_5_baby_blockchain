@@ -2,7 +2,7 @@ package practice_5_baby_blockchain;
 
 import java.math.BigInteger;
 
-// класс реализует публичный ключ
+// РєР»Р°СЃСЃ СЂРµР°Р»РёР·СѓРµС‚ РїСѓР±Р»РёС‡РЅС‹Р№ РєР»СЋС‡
 public class PublicKey {
 	
 	private BigInteger e;
@@ -27,7 +27,7 @@ public class PublicKey {
 		this.n = n;
 	}
 
-	// переопределенная функция toString
+	// РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ toString
 	@Override
 	public String toString() {
 		return "PublicKey [e=" + getE() + ", n=" + getN() + "]";
