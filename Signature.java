@@ -5,14 +5,14 @@ import java.math.BigInteger;
 
 public class Signature {
 	
-	// функция реализует цифровую подпись алгоритмом RSA
+	// С„СѓРЅРєС†РёСЏ СЂРµР°Р»РёР·СѓРµС‚ С†РёС„СЂРѕРІСѓСЋ РїРѕРґРїРёСЃСЊ Р°Р»РіРѕСЂРёС‚РјРѕРј RSA
 	public static byte [] signData (PrivateKey priv, String message) throws UnsupportedEncodingException {
 		
-		// переменная хранит захешированную строку
+		// РїРµСЂРµРјРµРЅРЅР°СЏ С…СЂР°РЅРёС‚ Р·Р°С…РµС€РёСЂРѕРІР°РЅРЅСѓСЋ СЃС‚СЂРѕРєСѓ
 		String hash = Hash.toSHA1(message);
-		// массив хранит сгенерированную цифровую подпись
+		// РјР°СЃСЃРёРІ С…СЂР°РЅРёС‚ СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅРЅСѓСЋ С†РёС„СЂРѕРІСѓСЋ РїРѕРґРїРёСЃСЊ
 		byte [] realSig = new byte [hash.length()];
-		// реализация цифровой подписи 
+		// СЂРµР°Р»РёР·Р°С†РёСЏ С†РёС„СЂРѕРІРѕР№ РїРѕРґРїРёСЃРё 
 		BigInteger temp;
 		for (int i = 0; i < realSig.length; i++) {
 			temp = new BigInteger(hash.substring(i, i+1), 16);
@@ -21,15 +21,15 @@ public class Signature {
 			realSig[i] = temp.byteValue();
 		}
 	
-		// результат
+		// СЂРµР·СѓР»СЊС‚Р°С‚
 		return realSig;
 		
 	}
 	
-	// функция выполняет верификацию цифровой подписи алгоритмом RSA
+	// С„СѓРЅРєС†РёСЏ РІС‹РїРѕР»РЅСЏРµС‚ РІРµСЂРёС„РёРєР°С†РёСЋ С†РёС„СЂРѕРІРѕР№ РїРѕРґРїРёСЃРё Р°Р»РіРѕСЂРёС‚РјРѕРј RSA
 	public static boolean verifySignature (byte [] realSig, String message, PublicKey publicKey) throws UnsupportedEncodingException {
 		BigInteger temp;
-		// переменная хранит результат расшифровки цифровой подписи
+		// РїРµСЂРµРјРµРЅРЅР°СЏ С…СЂР°РЅРёС‚ СЂРµР·СѓР»СЊС‚Р°С‚ СЂР°СЃС€РёС„СЂРѕРІРєРё С†РёС„СЂРѕРІРѕР№ РїРѕРґРїРёСЃРё
 		String resHash = "";
 		for (int i = 0; i < realSig.length; i++) {
 			temp = BigInteger.valueOf(realSig[i] & 0xFF);
