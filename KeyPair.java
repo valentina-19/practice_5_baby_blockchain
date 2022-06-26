@@ -30,19 +30,19 @@ public class KeyPair {
 		this.publicKey = publicKey;
 	}
 	
-	// функция проверяет являются ли числа взаимопростыми
+	// С„СѓРЅРєС†РёСЏ РїСЂРѕРІРµСЂСЏРµС‚ СЏРІР»СЏСЋС‚СЃСЏ Р»Рё С‡РёСЃР»Р° РІР·Р°РёРјРѕРїСЂРѕСЃС‚С‹РјРё
 		public static boolean isCoprimeNumber(BigInteger a, BigInteger b) {
 			
-			// цикл ищет общие делители чисел а и b
+			// С†РёРєР» РёС‰РµС‚ РѕР±С‰РёРµ РґРµР»РёС‚РµР»Рё С‡РёСЃРµР» Р° Рё b
 			BigInteger one = new BigInteger("1");
 			BigInteger zero = new BigInteger("0");
 			for (BigInteger i = new BigInteger("2"); i.compareTo(a.min(b)) <= 0; i=i.add(one)) {
-				// если числа имеют общие делители, функция возвращает ложь
+				// РµСЃР»Рё С‡РёСЃР»Р° РёРјРµСЋС‚ РѕР±С‰РёРµ РґРµР»РёС‚РµР»Рё, С„СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°РµС‚ Р»РѕР¶СЊ
 				if ((a.mod(i).compareTo(zero) == 0) && (b.mod(i).compareTo(zero) == 0)) {
 					return false;
 				}
 			}
-			// функция возвращает истину
+			// С„СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°РµС‚ РёСЃС‚РёРЅСѓ
 			return true;	
 		}
 	
@@ -54,7 +54,7 @@ public class KeyPair {
 				Random rnd = new Random();
 				int bitLength = 4;
 				BigInteger f = new BigInteger("ff", 16);
-		        // случайные простые числа p и q
+		        // СЃР»СѓС‡Р°Р№РЅС‹Рµ РїСЂРѕСЃС‚С‹Рµ С‡РёСЃР»Р° p Рё q
 				/*BigInteger p = new BigInteger(bitLength, 1000, rnd);
 				
 				BigInteger q;
@@ -62,16 +62,16 @@ public class KeyPair {
 					q = new BigInteger(bitLength, 1000, rnd);
 				}while(p.compareTo(q) == 0 || p.multiply(q).compareTo(f) < 0);*/
 				
-				// поскольку диапазон типа byte от 0 до 255, подбираем p и q такими, чтобы n не превышало 255
+				// РїРѕСЃРєРѕР»СЊРєСѓ РґРёР°РїР°Р·РѕРЅ С‚РёРїР° byte РѕС‚ 0 РґРѕ 255, РїРѕРґР±РёСЂР°РµРј p Рё q С‚Р°РєРёРјРё, С‡С‚РѕР±С‹ n РЅРµ РїСЂРµРІС‹С€Р°Р»Рѕ 255
 				BigInteger p = new BigInteger("11");
 				BigInteger q = new BigInteger("23");
-				// нахождение числа n
+				// РЅР°С…РѕР¶РґРµРЅРёРµ С‡РёСЃР»Р° n
 				BigInteger n = p.multiply(q); 
-				// нахождение значения функции Эйлера
+				// РЅР°С…РѕР¶РґРµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ С„СѓРЅРєС†РёРё Р­Р№Р»РµСЂР°
 				BigInteger one = new BigInteger("-1");
 				BigInteger eulerValue = (p.add(one)).multiply(q.add(one));
 				
-				// нахождение открытого ключа
+				// РЅР°С…РѕР¶РґРµРЅРёРµ РѕС‚РєСЂС‹С‚РѕРіРѕ РєР»СЋС‡Р°
 				BigInteger e;
 				one = new BigInteger("1");
 				
@@ -80,7 +80,7 @@ public class KeyPair {
 					
 				}while(!((e.compareTo(one) == 1) && (isCoprimeNumber(e, eulerValue))));
 				
-				// нахождение закрытого ключа
+				// РЅР°С…РѕР¶РґРµРЅРёРµ Р·Р°РєСЂС‹С‚РѕРіРѕ РєР»СЋС‡Р°
 				BigInteger k = new BigInteger("0");
 				BigInteger zero = new BigInteger("0");
 				do {
@@ -95,7 +95,7 @@ public class KeyPair {
 		
 	}
 	
-// переопределенная функция toString
+// РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ toString
 	@Override
 	public String toString() {
 		return "KeyPair [privateKey=" + getPrivateKey() + ", publicKey=" + getPublicKey() + "]";
