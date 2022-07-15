@@ -2,24 +2,47 @@ package practice_5_baby_blockchain;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.util.Iterator;
 
 public class Main {
 
-	public static void main(String[] args) throws UnsupportedEncodingException {
+	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		KeyPair objV = KeyPair.genKeyPair();
-		System.out.println(objV.toString());
+		Account account;
+		Blockchain blockchain = Blockchain.initBlockchain();
+		account = Account.genAccount(blockchain);
+		blockchain.getTokenFromFaucet(account, 10);
+		blockchain.getCoinDataBase().put(account, account.getBalance());	
+		System.out.println("Account:" + account.toString());
 		
-		String message = "abcd";
-		byte [] resSig = Signature.signData(objV.getPrivateKey(), message);
+		account = Account.genAccount(blockchain);
+		blockchain.getTokenFromFaucet(account, 10);
+		blockchain.getCoinDataBase().put(account, account.getBalance());	
+		System.out.println("Account:" + account.toString());
 		
-		for (int i = 0; i < resSig.length; i++) {
-			System.out.print(resSig[i] + " ");
-		}
-		System.out.println();
-		boolean check = Signature.verifySignature(resSig, message, objV.getPublicKey());
-		System.out.print(Boolean.toString(check));
+		account = Account.genAccount(blockchain);
+		blockchain.getTokenFromFaucet(account, 10);
+		blockchain.getCoinDataBase().put(account, account.getBalance());	
+		System.out.println("Account:" + account.toString());
+		
+		account = Account.genAccount(blockchain);
+		blockchain.getTokenFromFaucet(account, 10);
+		blockchain.getCoinDataBase().put(account, account.getBalance());	
+		System.out.println("Account:" + account.toString());
+		
+		account = Account.genAccount(blockchain);
+		blockchain.getTokenFromFaucet(account, 10);
+		blockchain.getCoinDataBase().put(account, account.getBalance());	
+		System.out.println("Account:" + account.toString());
+		
+		account = Account.genAccount(blockchain);
+		blockchain.getTokenFromFaucet(account, 10);
+		blockchain.getCoinDataBase().put(account, account.getBalance());	
+		System.out.println("Account:" + account.toString());
+		
+		blockchain.showCoinDataBase();
+		
 	}
-
+	
 }
